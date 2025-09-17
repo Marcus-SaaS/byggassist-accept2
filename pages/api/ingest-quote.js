@@ -12,10 +12,8 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Missing token or quote data' });
     }
 
-    // Spara i storage istället för filsystem
-    await storage.set(`quote:${token}`, quote, 86400); // 24 timmar
-
-    console.log('Quote saved to storage with token:', token);
+    await storage.set(`quote:${token}`, quote, 86400);
+    console.log('Quote saved with token:', token);
     
     res.status(200).json({ 
       ok: true, 
